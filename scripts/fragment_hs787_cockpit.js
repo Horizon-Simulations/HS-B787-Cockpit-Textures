@@ -8,10 +8,10 @@ const execute = async () => {
             baseDir: './build/horizonsim-787-Cockpit-Textures',
             outDir: './build/build-modules',
             modules: [{
-                name: 'Asobo Textures',
+                name: 'Asobo_Textures',
                 sourceDir: './SimObjects/Airplanes/Asobo_B787_10/texture'
             }, {
-                name: 'Kuro Textures',
+                name: 'Kuro_Textures',
                 sourceDir: './SimObjects/Airplanes/Kuro_B787_8/texture'
             }]
         });
