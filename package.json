@@ -1,0 +1,19 @@
+{
+  "name": "hs-b787-cockpit-textures",
+  "version": "1.0.0",
+  "description": "\"Horizon Simulations cockpit texture pack for B787 series\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Horizon-Simulations/HS-B787-Cockpit-Textures.git"
+  },
+  "author": "Horizon Simulations",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Horizon-Simulations/HS-B787-Cockpit-Textures/issues"
+  },
+  "homepage": "https://github.com/Horizon-Simulations/HS-B787-Cockpit-Textures#readme"
+}
