@@ -1,21 +1,21 @@
 {
-  "dependencies": [
-    {
-      "name": "fs-base-propdefs",
-      "package_version": "0.1.2"
-    }
-  ],
-  "content_type": "AIRCRAFT",
-  "title": "787 Cockpit Texture Mod",
-  "manufacturer": "Boeing",
-  "creator": "MRR (Mike), HorizonSimulations",
-  "package_version": "1.0",
-  "minimum_game_version": "1.31.13",
+  "creator": "MoreRightRudder (Mike), Horizon Simulations",
   "release_notes": {
     "neutral": {
       "LastUpdate": "",
       "OlderHistory": ""
     }
   },
-  "total_package_size": "00000000002058031925"
+  "title": "Horizon Simulations 787 Cockpit Texture Pack",
+  "content_type": "AIRCRAFT",
+  "dependencies": [
+    {
+      "name": "fs-base-propdefs",
+      "package_version": "0.1.2"
+    }
+  ],
+  "minimum_game_version": "1.31.13",
+  "manufacturer": "Boeing",
+  "package_version": "1.0.0",
+  "total_package_size": "00000000002058017189"
 }

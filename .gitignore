@@ -1,0 +1,6 @@
+node_modules
+build
+horizonsim-787-Cockpit-Textures/hs-787-cockpit-textures_build_info.json
+horizonsim-787-Cockpit-Textures/layout.json
+horizonsim-787-Cockpit-Textures/manifest.json
+*.bak

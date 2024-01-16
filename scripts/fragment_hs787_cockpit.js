@@ -5,8 +5,8 @@ const execute = async () => {
     try {
         const result = await fragmenter.pack({
             packOptions: { splitFileSize: 102_760_448, keepCompleteModulesAfterSplit: false },
-            baseDir: './horizonsim-787-Cockpit-Textures/build/horizonsim-787-Cockpit-Textures',
-            outDir: './horizonsim-787-Cockpit-Textures/build/build-modules',
+            baseDir: './build/horizonsim-787-Cockpit-Textures',
+            outDir: './build/build-modules',
             modules: [{
                 name: 'Asobo Textures',
                 sourceDir: './SimObjects/Airplanes/Asobo_B787_10/texture'
@@ -16,7 +16,7 @@ const execute = async () => {
             }]
         });
         console.log(result);
-        console.log(fs.readFileSync('./horizonsim-787-Cockpit-Textures/build/build-modules/modules.json').toString());
+        console.log(fs.readFileSync('./build/build-modules/modules.json').toString());
     } catch (e) {
         console.error(e);
         process.exit(1);
