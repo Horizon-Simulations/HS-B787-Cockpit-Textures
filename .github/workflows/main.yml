@@ -50,8 +50,9 @@ jobs:
           ./scripts/dev-env/run.sh node ./scripts/install_source_hs787_cockpit.js
           mkdir ./${{ env.BUILD_DIR_NAME }}
           cd ./build/
-          zip -r ../../${{ env.BUILD_DIR_NAME }}/${{ env.ZIP_NAME }} ./horizonsim-787-Cockpit-Textures/
-          cd ../../
+          ls -la
+          zip -r ../${{ env.BUILD_DIR_NAME }}/${{ env.ZIP_NAME }} ./horizonsim-787-Cockpit-Textures/
+          cd ../
       - name: Upload to Cloudflare CDN
         run: |
           ./scripts/cdn.sh $CDN_BUCKET_DESTINATION ./build/build-modules
