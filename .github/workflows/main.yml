@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  build-hs789:
+  build-hs787-cockpit-texture:
     runs-on: ubuntu-latest
     env:
       PRE_RELEASE_ID: 64125785
