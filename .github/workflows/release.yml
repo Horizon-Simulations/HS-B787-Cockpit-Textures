@@ -1,0 +1,74 @@
+name: release
+on:
+  push:
+    tags:
+      - 'v*'
+      - '!v*-alpha*'
+      - '!v*-beta*'
+      - '!v*-streamer*'
+      - '!v*-rc*'
+jobs:
+  build-hs787-cockpit-texture:
+    runs-on: ubuntu-latest
+    env:
+      PRE_RELEASE_ID: 64125785
+      PRE_RELEASE_TAG: vstable
+      ZIP_NAME: hs-b787-cockpit-texture-pack-${{ github.ref_name }}.zip
+      BUILD_DIR_NAME: stable
+      CLOUDFLARE_WORKER_PASSWORD: ${{ secrets.CLOUDFLARE_WORKER_PASSWORD }}
+      CDN_BUCKET_DESTINATION: addons/hs-b787-cockpit-texture/release
+    steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: false
+          swap-storage: true
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - name: Set BUILT_DATE_TIME
+        run: echo "BUILT_DATE_TIME=$(date -u -Iseconds)" >> $GITHUB_ENV
+      - name: Delete old GitHub Pre-Release assets
+        uses: mknejp/delete-release-assets@v1
+        with:
+          token: ${{ github.token }}
+          tag: ${{ env.PRE_RELEASE_TAG }}
+          assets: "*"
+          fail-if-no-assets: false
+          fail-if-no-release: false
+      - name: Install required dependencies
+        run: |
+            npm i --save-dev
+      - name: Finalize built package
+        run: |
+            npm run build:metadata
+            npm run build:manifest
+      - name: Generate HorizonSim-789 ZIP file
+        run: |
+          ./scripts/dev-env/run.sh node ./scripts/fragment_hs787_cockpit.js
+          cp ./build/build-modules/modules.json ./build/horizonsim-787-Cockpit-Textures/install.json
+          ./scripts/dev-env/run.sh node ./scripts/install_source_hs787_cockpit.js
+          mkdir ./${{ env.BUILD_DIR_NAME }}
+          cd ./build/
+          ls -la
+          zip -r ../${{ env.BUILD_DIR_NAME }}/${{ env.ZIP_NAME }} ./horizonsim-787-Cockpit-Textures/
+          cd ../
+      - name: Upload to Cloudflare CDN
+        run: |
+          ./scripts/cdn.sh $CDN_BUCKET_DESTINATION ./build/build-modules
+      - name: Get short SHA
+        uses: benjlevesque/short-sha@v2.2
+        id: short-sha
+      - name: Upload Release Config to CloudFlare CDN
+        env:
+          SHA: ${{ steps.short-sha.outputs.sha }}
+        run: |
+          mkdir -p ./build/config
+          echo "releases:" >> ./build/config/releases.yaml
+          echo "  - name: $SHA" >> ./build/config/releases.yaml
+          echo "    date: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> ./build/config/releases.yaml
+          ./scripts/cdn.sh $CDN_BUCKET_DESTINATION ./build/config
