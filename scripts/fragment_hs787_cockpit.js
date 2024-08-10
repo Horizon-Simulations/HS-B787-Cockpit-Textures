@@ -11,8 +11,8 @@ const execute = async () => {
                 name: 'Asobo_Textures',
                 sourceDir: './SimObjects/Airplanes/Asobo_B787_10/texture'
             }, {
-                name: 'Kuro_Textures',
-                sourceDir: './SimObjects/Airplanes/Kuro_B787_8/texture'
+                name: '788_Textures',
+                sourceDir: './SimObjects/Airplanes/HorizonSim_B787_8_SHARED/texture'
             }]
         });
         console.log(result);
