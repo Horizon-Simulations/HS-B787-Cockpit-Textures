@@ -49,9 +49,9 @@ jobs:
             npm run build:manifest
       - name: Generate HorizonSim-789 ZIP file
         run: |
-          ./scripts/dev-env/run.sh node ./scripts/fragment_hs787_cockpit.js
+          node ./scripts/fragment_hs787_cockpit.js
           cp ./build/build-modules/modules.json ./build/horizonsim-787-Cockpit-Textures/install.json
-          ./scripts/dev-env/run.sh node ./scripts/install_source_hs787_cockpit.js
+          node ./scripts/install_source_hs787_cockpit.js
           mkdir ./${{ env.BUILD_DIR_NAME }}
           cd ./build/
           ls -la

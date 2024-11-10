@@ -4,6 +4,7 @@ const fs = require('fs');
 const execute = async () => {
     try {
         const result = await fragmenter.pack({
+            version: require('./fragmenter_version').version,
             packOptions: { splitFileSize: 102_760_448, keepCompleteModulesAfterSplit: false },
             baseDir: './build/horizonsim-787-Cockpit-Textures',
             outDir: './build/build-modules',
