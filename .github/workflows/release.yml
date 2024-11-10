@@ -18,16 +18,15 @@ jobs:
       CLOUDFLARE_WORKER_PASSWORD: ${{ secrets.CLOUDFLARE_WORKER_PASSWORD }}
       CDN_BUCKET_DESTINATION: addons/hs-b787-cockpit-texture/release
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
+      - name: Maximize build space
+        uses: AdityaGarg8/remove-unwanted-software@v4.1
         with:
-          tool-cache: false
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          docker-images: false
-          swap-storage: true
+          remove-android: 'true'
+          remove-dotnet: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-large-packages: 'true'
+          remove-cached-tools: 'true'
       - name: Checkout source
         uses: actions/checkout@v3
       - name: Set BUILT_DATE_TIME
